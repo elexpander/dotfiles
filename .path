@@ -1,7 +1,12 @@
+# Homebrew sbin
+export PATH="/usr/local/sbin:$PATH"
+
+# Homebrew GNU coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+
 
 # ~/bin
 export PATH="$HOME/bin:$PATH"
 
-# Homebew GNU coreutils
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
