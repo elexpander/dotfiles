@@ -62,8 +62,8 @@ set tabstop=2
 "set autoindent
 
 " Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
+set lcs=tab:└┘,precedes:◀,extends:▶,trail:·,nbsp:␣
 
 " Improve searches
 set hlsearch
