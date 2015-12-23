@@ -63,7 +63,8 @@ set tabstop=2
 
 " Show “invisible” characters
 set list
-set lcs=tab:└┘,precedes:◀,extends:▶,trail:·,nbsp:␣
+"set lcs=tab:--,precedes:◀,extends:▶,trail:·,nbsp:␣
+set lcs=tab:⋅›,precedes:◀,extends:▶,trail:·,nbsp:␣
 
 " Improve searches
 set hlsearch
