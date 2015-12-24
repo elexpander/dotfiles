@@ -1,4 +1,5 @@
-# Homebrew sbin
+# Homebrew bin directories
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Homebrew GNU coreutils

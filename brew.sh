@@ -63,6 +63,7 @@ brew install tcpreplay
 brew install tcptrace
 brew install tcptraceroute
 brew install mtr
+brew install ipcalc
 
 # other useful binaries.
 brew install wget --with-iri
@@ -72,6 +73,7 @@ brew install git
 brew install lynx
 brew install pv
 brew install tree
+brew install tmux
 
 # Remove outdated versions from the cellar.
 brew cleanup
