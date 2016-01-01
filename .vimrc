@@ -1,4 +1,5 @@
 " Use the Solarized Dark theme
+syntax on
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
@@ -42,9 +43,6 @@ set modelines=4
 " Don't go right to the edge of the window when scrolling
 set scrolloff=5
 
-" Switch syntax highlighting on
-syntax on
-
 " Enable line numbers
 set number
 
@@ -76,7 +74,7 @@ set smartcase
 set laststatus=2
 
 " Enable mouse in all modes
-set mouse=a
+"set mouse=a
 
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
