@@ -67,13 +67,17 @@ brew install ipcalc
 
 # other useful binaries.
 brew install wget --with-iri
-#brew install ack
+brew install ack
 #brew install exiv2
 brew install git
 brew install lynx
 brew install pv
 brew install tree
 brew install tmux
+brew install ipcalc
+
+# development
+brew install python3
 
 # Remove outdated versions from the cellar.
 brew cleanup
