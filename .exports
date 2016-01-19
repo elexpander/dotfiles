@@ -1,6 +1,9 @@
 # Make vim the default editor.
 export EDITOR='vim';
 
+# Bash history
+export HISTSIZE=10000
+
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 #export PYTHONIOENCODING='UTF-8';
 
