@@ -60,75 +60,60 @@ prompt_git() {
 }
 
 if tput setaf 1 &> /dev/null; then
-	tput sgr0; # reset colors
-	bold=$(tput bold);
-	reset=$(tput sgr0);
-	# Solarized colors, taken from http://git.io/solarized-colors.
-	black=$(tput setaf 234);
-	blue=$(tput setaf 33);
-	cyan=$(tput setaf 37);
-	green=$(tput setaf 64);
-	orange=$(tput setaf 166);
-	purple=$(tput setaf 125);
-	red=$(tput setaf 124);
-	violet=$(tput setaf 61);
-	white=$(tput setaf 254);
-	yellow=$(tput setaf 136);
+  reset=$(tput sgr0);
+  black=$(tput setaf 0);
+  red=$(tput setaf 1);
+  green=$(tput setaf 2);
+  yellow=$(tput setaf 3);
+  blue=$(tput setaf 4);
+  magenta=$(tput setaf 5);
+  cyan=$(tput setaf 6);
+  white=$(tput setaf 7);
+  b_red=$(tput setaf 1 && tput bold);
+  b_magenta=$(tput setaf 5 && tput bold);
 else
-	bold='';
-	reset="\e[0m";
-	black="\e[0;30m";
-	blue="\e[0;34m";
-	cyan="\e[0;36m";
-	green="\e[0;32m";
-	orange="\e[1;31m";
-	purple="\e[1;35m";
-	red="\e[0;31m";
-	violet="\e[0;35m";
-	white="\e[0;37m";
-	yellow="\e[0;33m";
-fi;
+  reset="\e[0m"
+  black="\e[0;30m"
+  red="\e[0;31m"
+  green="\e[0;32m"
+  yellow="\e[0;33m"
+  blue="\e[0;34m"
+  magenta="\e[0;35m"
+  cyan="\e[0;36m"
+  white="\e[0;37m"
+  b_red="\e[1;31m"
+  b_magenta="\e[1;35m"
+fi
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
-	userStyle="${red}";
+  userStyle="${red}"
 else
-	userStyle="${orange}";
-fi;
-
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-	hostStyle="${bold}${red}";
-else
-	hostStyle="${yellow}";
+  userStyle="${yellow}"
 fi;
 
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
-PS1+="\[${reset}\]▶ \t <"
+PS1+="\[${blue}\]▶ \t <"
 PS1+='`rc=$?; if [[ 0 != $rc ]];then echo -n "${red}";fi; echo "$rc"`' #rc
-PS1+="\[${reset}\]>j\j> " # jobs & time
-PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${white}\]@";
-PS1+="\[${hostStyle}\]\h"; # host
-PS1+="\[${white}\]:";
-PS1+="\[${green}\]\w"; # working directory
-PS1+="\$(prompt_git \"\[${white}\] on \[${violet}\]\" \"\[${blue}\]\")"; # Git repository details
+PS1+="\[${blue}\]>j\j> " # jobs & time
+PS1+="\[${userStyle}\]\u" # username
+PS1+="\[${yellow}\]@\h:" # host
+PS1+="\[${green}\]\w" # working directory
+PS1+="\$(prompt_git \"\[${white}\] on \[${magenta}\]\" \"\[${blue}\]\")"; # Git repository details
 PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+PS1+="\[${userStyle}\]\\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
 
 # Prompt for root on OS X
 if [ 'Darwin' == `uname` ]; then
-  SUDO_PS1+="\[${reset}\]<"
+  SUDO_PS1+="\[${blue}\]▶ \t <"
   SUDO_PS1+='`echo "$?"`' #rc
-  SUDO_PS1+="\[${reset}\]>j\j> \t " # jobs & time
-  SUDO_PS1+="\[${red}\]\u"; # username
-  SUDO_PS1+="\[${white}\]@";
-  SUDO_PS1+="\[${hostStyle}\]\h"; # host
-  SUDO_PS1+="\[${white}\]:";
+  SUDO_PS1+=">j\j> \t " # jobs & time
+  SUDO_PS1+="\[${red}\]\u" # username
+  SUDO_PS1+="\[${yellow}\]@\h:" # host
   SUDO_PS1+="\[${green}\]\w"; # working directory
-  SUDO_PS1+="\n";
+  SUDO_PS1+="\n"
   SUDO_PS1+="\[${red}\]# \[${reset}\]"; # `$` (and reset color)
   export SUDO_PS1
 fi
