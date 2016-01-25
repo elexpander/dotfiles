@@ -109,4 +109,7 @@ set history=1000
 " Keep lots of undo
 set undolevels=5000
 
+" Split panes
+set splitbelow
+set splitright
 
