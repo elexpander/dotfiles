@@ -47,7 +47,7 @@ ln -s /usr/local/opt/openssl/bin/openssl /usr/local/bin/openssl
 # more recent versions of some OS X tools.
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
-brew install homebrew/dupes/awk
+brew install gawk
 #brew install homebrew/dupes/libpcap
 #brew install homebrew/dupes/tcpdump
 
