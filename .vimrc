@@ -33,7 +33,7 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 
-" Don’t create backups when editing files in certain directories
+" Don't create backups when editing files in certain directories
 set backupskip=
 
 " Respect modeline in files
@@ -59,7 +59,7 @@ set expandtab
 set tabstop=2
 "set autoindent
 
-" Show “invisible” characters
+" Show "invisible" characters
 set list
 "set lcs=tab:--,precedes:◀,extends:▶,trail:·,nbsp:␣
 set lcs=tab:⋅›,precedes:◀,extends:▶,trail:·,nbsp:␣
@@ -76,10 +76,10 @@ set laststatus=2
 " Enable mouse in all modes
 "set mouse=a
 
-" Don’t reset cursor to start of line when moving around.
+" Don't reset cursor to start of line when moving around.
 set nostartofline
 
-" Don’t show the intro message when starting Vim
+" Don't show the intro message when starting Vim
 set shortmess=atI
 
 " Show the current mode
