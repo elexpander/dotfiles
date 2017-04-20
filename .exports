@@ -17,3 +17,6 @@ export LS_COLORS='no=00:fi=00:di=34:ow=37;40:ln=35:pi=37;44:so=30;44:do=30;44:bd
 # Github session
 export HOMEBREW_GITHUB_API_TOKEN='9b1cf35c2ee00fb0caacb55631d1f57883dc2dd7'
 
+# Ansible config
+export ANSIBLE_CONFIG='~/.ansible/ansible.cfg'
+
