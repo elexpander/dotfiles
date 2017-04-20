@@ -43,6 +43,9 @@ brew install openssl
 ln -s /usr/local/opt/openssl/bin/openssl /usr/local/bin/openssl
 # Put trusted CA files (.pem) to /usr/local/etc/openssl/certs
 # and run /usr/local/opt/openssl/bin/c_rehash
+brew install gnupg2
+brew install gpg-agent
+brew install pinentry
 
 # more recent versions of some OS X tools.
 brew install vim --override-system-vi
@@ -68,6 +71,7 @@ brew install ipcalc
 # other useful binaries.
 brew install wget --with-iri
 brew install ack
+brew install htop-osx
 #brew install exiv2
 brew install git
 brew install lynx
@@ -75,6 +79,7 @@ brew install pv
 brew install tree
 brew install tmux
 brew install ipcalc
+brew install wakeonlan
 
 # development
 brew install python3

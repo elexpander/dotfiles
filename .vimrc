@@ -1,8 +1,8 @@
 " Use the Solarized Dark theme
 syntax on
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+colorscheme gruvbox
+"let g:solarized_termtrans=1
 
 " Better vim. It must be first, it changes other options as a side effect.
 set nocompatible
