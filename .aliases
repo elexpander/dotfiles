@@ -40,4 +40,14 @@ alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
 # SVN add all new files
 alias svna="svn st | grep ^\? | sed 's/^\?[ \t]*//' | xargs svn add"
 
+# Puppet
+function puppet-check() {
+	puppet parser validate "$@" && echo ">> Syntax OK" && puppet-lint --fail-on-warnings --with-filename --with-context --no-80chars-check "$@" && echo ">> Style OK";
+}
+
+# Docker
+alias docker-ready='eval $(docker-machine env default)'
+
+
+
 
