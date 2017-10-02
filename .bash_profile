@@ -39,3 +39,11 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # Load rbenv
 eval "$(rbenv init -)"
 
+# Python virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenv
+export PROJECT_HOME=$HOME/dev
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+
+

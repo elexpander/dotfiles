@@ -113,3 +113,5 @@ set undolevels=5000
 set splitbelow
 set splitright
 
+" Fix vim background within tmux
+set t_ut=
