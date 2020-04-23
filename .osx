@@ -12,6 +12,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+# Change screenshots location
+defaults write com.apple.screencapture location "$HOME/Pictures"
+
 # Always show scrollbars on Finder
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
