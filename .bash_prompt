@@ -1,108 +1,32 @@
+# RESET="\e[0m"
+# BLACK='\e[0;30m'
+# RED='\e[0;31m'
+# GREEN='\e[0;32m'
+# YELLOW='\e[0;33m'
+# BLUE='\e[0;34m'
+# MAGENTA='\e[0;35m'
+# CYAN='\e[0;36m'
+# WHITE='\e[0;37m'
+# BOLD='\e[1m'
 
-prompt_git() {
-	local s='';
-	local branchName='';
+# BGBLACK='\e[40m'
+# BGRED='\e[41;30m'
+# BGGREEN='\e[42;30m'
+# BGYELLOW='\e[43;30m'
+# BGBLUE='\e[44;30m'
+# BGMAGENTA='\e[45;30m'
+# BGCYAN='\e[46;30m'
+# BGWHITE='\e[47;30m'
 
-	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-
-		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-
-			# Ensure the index is up to date.
-			git update-index --really-refresh -q &>/dev/null;
-
-			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
-				s+='+';
-			fi;
-
-			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
-				s+='!';
-			fi;
-
-			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+='?';
-			fi;
-
-			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				s+='$';
-			fi;
-
-		fi;
-
-		# Get the short symbolic ref.
-		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-		# Otherwise, just give up.
-		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-			git rev-parse --short HEAD 2> /dev/null || \
-			echo '(unknown)')";
-
-		[ -n "${s}" ] && s=" [${s}]";
-
-		echo -e "${1}${branchName}${2}${s}";
-	else
-		return;
-	fi;
-}
-
-if tput setaf 1 &> /dev/null; then
-  reset=$(tput sgr0);
-  black=$(tput setaf 0);
-  red=$(tput setaf 1);
-  green=$(tput setaf 2);
-  yellow=$(tput setaf 3);
-  blue=$(tput setaf 4);
-  magenta=$(tput setaf 5);
-  cyan=$(tput setaf 6);
-  white=$(tput setaf 7);
-  b_red=$(tput setaf 1 && tput bold);
-  b_magenta=$(tput setaf 5 && tput bold);
-else
-  reset="\e[0m"
-  black="\e[0;30m"
-  red="\e[0;31m"
-  green="\e[0;32m"
-  yellow="\e[0;33m"
-  blue="\e[0;34m"
-  magenta="\e[0;35m"
-  cyan="\e[0;36m"
-  white="\e[0;37m"
-  b_red="\e[1;31m"
-  b_magenta="\e[1;35m"
-fi
-
-# Highlight the user name when logged in as root.
-if [[ "${USER}" == "root" ]]; then
-  userStyle="${red}"
-else
-  userStyle="${white}"
-fi;
-
-# Set the terminal title to the current working directory.
-PS1="\[\033]0;\w\007\]";
-PS1+="\[${blue}\]▶ \t <"
-PS1+='`rc=$?; if [[ 0 != $rc ]];then echo -n "${red}";fi; echo "$rc"`' #rc
-PS1+="\[${blue}\]>j\j> " # jobs
-PS1+="\[${userStyle}\]\u@\h:\w" # user@host
-PS1+="\$(prompt_git \"\[${white}\] on \[${magenta}\]\" \"\[${blue}\]\")"; # Git repository details
-PS1+="\n";
-PS1+="\[${userStyle}\]\\$ \[${reset}\]"; # `$` (and reset color)
+PS1="\[\033]0;\w\007\]"; # set terminal title to current directory
+PS1+='`if [[ 0 != $? ]]; then
+echo "\e[41;30m \t \e[1m\u @ \h: \w \e[0;31m◣ ";
+else echo "\e[44;30m \t \e[1m\u @ \h: \w \e[0;34m◣ ";
+fi;`' # print in red or blue: time, user, host, path
+PS1+="\e[0m\n"
+PS1+='`if [[ 0 != $(jobs -p|wc -l) ]]; then echo "\j ";fi`'
+PS1+="\e[1;37m\\$ \e[0m"; # prompt symbol and reset color
 export PS1;
 
-# Prompt for root on OS X
-if [ 'Darwin' == `uname` ]; then
-  SUDO_PS1+="\[${blue}\]▶ \t <"
-  SUDO_PS1+='`echo "$?"`' #rc
-  SUDO_PS1+=">j\j> " # jobs
-  SUDO_PS1+="\[${red}\]\u@\h:\w" # user@host
-  SUDO_PS1+="\n"
-  SUDO_PS1+="\[${red}\]# \[${reset}\]"; # `$` (and reset color)
-  export SUDO_PS1
-fi
-
-PS2="\[${white}\]└ \[${reset}\]";
+PS2="\e[1;37m└ \\e[0m";
 export PS2;
