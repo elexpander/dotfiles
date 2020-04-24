@@ -18,15 +18,13 @@
 # BGCYAN='\e[46;30m'
 # BGWHITE='\e[47;30m'
 
-PS1="\[\033]0;\w\007\]"; # set terminal title to current directory
-PS1+='`if [[ 0 != $? ]]; then
-echo "\e[41;30m \t \e[1m\u @ \h: \w \e[0;31m◣ ";
-else echo "\e[44;30m \t \e[1m\u @ \h: \w \e[0;34m◣ ";
-fi;`' # print in red or blue: time, user, host, path
-PS1+="\e[0m\n"
-PS1+='`if [[ 0 != $(jobs -p|wc -l) ]]; then echo "\j ";fi`'
-PS1+="\e[1;37m\\$ \e[0m"; # prompt symbol and reset color
+# Prompt
+PS1="\[\033]0;\w\007\]";                                                     # terminal title
+PS1+='`if [[ 0 != $? ]]; then echo "\e[41;30m"; else echo "\e[44;30m"; fi;`' # red or blue
+PS1+=" \t \e[1m\u @ \h: \w \e[0m\n"                                          # time, user, host, path
+PS1+='`if $(jobs -p|grep -q "."); then echo "\j ";fi`'                       # background jobs
+PS1+="\e[1;37m\\$ \e[0m";                                                    # prompt symbol, reset color
 export PS1;
 
-PS2="\e[1;37m└ \\e[0m";
+PS2="\e[1;37m└ \\e[0m";                                                      # new line prompt
 export PS2;
