@@ -87,3 +87,5 @@ brew install python3
 # Remove outdated versions from the cellar.
 brew cleanup
 
+brew cask install Rectangle
+sudo xattr -d com.apple.quarantine /Applications/Rectangle.app 
